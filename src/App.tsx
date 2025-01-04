@@ -1,9 +1,16 @@
 import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import routes from "./components/routes/routes";
+
+//const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+  basename: import.meta.env.BASE_URL,
+});
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <RouterProvider router={router} />
     </>
   );
 }
