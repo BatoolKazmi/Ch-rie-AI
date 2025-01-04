@@ -29,7 +29,6 @@ function Test() {
 
   return (
     <>
-      <NavBar />
       <div className="p-4">
         {phase === 1 && (
           <div>

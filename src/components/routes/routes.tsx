@@ -3,6 +3,7 @@ import Camera from "./Camera";
 import Products from "./Products";
 import Layout from "./Layout";
 import ErrorPage from "./ErrorPage";
+import Test from "./Test";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
       {
         index: true,
         element: <Home />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: "/test",
+        element: <Test />,
         errorElement: <ErrorPage />
       },
       {
