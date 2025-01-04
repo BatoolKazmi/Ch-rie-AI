@@ -1,5 +1,6 @@
 import Home from "./Home";
 import Test from "./Test";
+import Camera from "./Camera";
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: "/test",
     element: <Test />,
+  },
+  {
+    path: "/camera",
+    element: <Camera />,
   },
 ];
 
