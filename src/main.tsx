@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App.tsx";
+import { Provider } from "@/components/ui/provider"
+
+
 
 // createRoot(document.getElementById("root")!).render(
 //   <StrictMode>
@@ -9,8 +12,12 @@ import App from "./App.tsx";
 //   </StrictMode>
 // );
 
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <Provider>
+        <App />
+    </Provider>
   </React.StrictMode>
 );

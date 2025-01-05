@@ -1,15 +1,20 @@
 import { Outlet } from "react-router-dom";
 import NavBar from '../NavBar';
 import Footer from '../Footer';
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { Theme } from "@chakra-ui/react"
 
 export default function Layout() {
   return (
-    <>
-      <NavBar />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </>
+    <ColorModeProvider forcedTheme="light">
+      <Theme appearance="light">
+        <NavBar />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </Theme>
+    </ColorModeProvider>
+
   );
 }

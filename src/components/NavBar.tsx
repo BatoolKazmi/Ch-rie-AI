@@ -11,6 +11,7 @@ function NavBar() {
       </NavLink>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/test">Find Products</NavLink>
+      <NavLink to="/products">Test results</NavLink>
     </nav>
   );
 }
