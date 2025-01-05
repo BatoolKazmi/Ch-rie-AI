@@ -171,7 +171,7 @@ function Products() {
                 </div>
             </div>
         </div>
-        <div className="px-[5rem] py-[4rem]">
+        <div className="px-[5rem] py-[4rem] grid grid-rows-2 grid-flow-col gap-4">
             {products.map((product) => {
                 return <ProductCard product={product}></ProductCard>
             })}
