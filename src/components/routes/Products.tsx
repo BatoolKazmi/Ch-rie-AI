@@ -97,7 +97,7 @@ function Products() {
                 117
             ],
             "shadename": "250W For light to medium skin with warm/peachy undertones",
-            "rating": 4.5077,
+            "rating": 4.7,
             "salesprice": 77.0,
             "skintypes": [
                 "normal",
@@ -118,7 +118,7 @@ function Products() {
                 118
             ],
             "shadename": "Stay Spice",
-            "rating": 4.1831,
+            "rating": 4.5,
             "salesprice": 53.0,
             "skintypes": [
                 "sensitive",
@@ -139,7 +139,7 @@ function Products() {
                 124
             ],
             "shadename": "5N medium",
-            "rating": 4.22,
+            "rating": 4.55,
             "salesprice": 81.0,
             "skintypes": [
                 "normal",
@@ -153,17 +153,17 @@ function Products() {
     return ( 
     <>
       <section className="bg-slate-50/45 mx-8 my-3 rounded-xl">
-        <div className="products-bar  px-2 pt-[4rem] pb-2">
-            <ul className="flex flex-row sm:flex-column justify-center">
+        <div className="products-bar px-2 pt-[4rem] pb-2">
+            <ul className="flex flex-col sm:flex-row justify-center items-center">
                 <li className="px-4 text-lg"><button className="border-b-2 border-gray-500">FOUNDATIONS</button></li>
-                <li className="px-4 text-lg text-gray-800"><button>COMING SOON</button></li>
-                <li className="px-4 text-lg text-gray-800"><button>COMING SOON</button></li>
+                <li className="px-4 text-lg pt-4 sm:pt-0 text-gray-800"><button>COMING SOON</button></li>
+                <li className="px-4 text-lg pt-4 sm:pt-0 text-gray-800"><button>COMING SOON</button></li>
             </ul>
         </div>
-        <div className="header-area px-[5rem] pt-[3rem]">
-            <h2 className="text-6xl">Say Hello to Makeup Made For You</h2>
-            <div className="sort-results pt-[3rem] flex flex-row">
-                <div className="sort-by">
+        <div className="header-area pt-[3rem]">
+            <h2 className="text-4xl sm:text-6xl text-center px-6">Say Hello to Makeup Made For You</h2>
+            <div className="sort-results pt-[3rem] flex flex-col items-center sm:flex-row sm:justify-around">
+                <div className="sort-by pb-4 sm: pb-0">
                     <Dropdown />
                 </div>
                 <div className="results-title">
