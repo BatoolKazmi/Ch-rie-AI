@@ -62,7 +62,7 @@ function Products() {
                 "dry",
                 "sensitive"
             ],
-            "color_distance": 5.744562646538029
+            "color_distance": 441
         },
         {
             "id": 8,
@@ -83,7 +83,7 @@ function Products() {
                 "oily",
                 "combination"
             ],
-            "color_distance": 6.164414002968976
+            "color_distance": 200
         },
         {
             "id": 8,
@@ -104,7 +104,7 @@ function Products() {
                 "oily",
                 "combination"
             ],
-            "color_distance": 7.615773105863909
+            "color_distance": 100
         },
         {
             "id": 4,
@@ -125,7 +125,7 @@ function Products() {
                 "dry",
                 "normal"
             ],
-            "color_distance": 8.306623862918075
+            "color_distance": 50
         },
         {
             "id": 7,
@@ -171,9 +171,9 @@ function Products() {
                 </div>
             </div>
         </div>
-        <div className="px-[5rem] py-[4rem] grid grid-rows-2 grid-flow-col gap-4">
+        <div className="px-[5rem] py-[4rem] flex flex-wrap flex-row gap-6 justify-center">
             {products.map((product) => {
-                return <ProductCard product={product}></ProductCard>
+                return <ProductCard key={product.color_distance} product={product}></ProductCard>
             })}
         </div>
       </section>
