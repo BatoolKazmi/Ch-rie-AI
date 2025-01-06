@@ -29,18 +29,18 @@ import { Button, Card, Image, Text } from "@chakra-ui/react"
     let percentMatch = parseFloat(findPercentMatch(color_distance));
 
     if(percentMatch >= 90.00){
-      return "bg-emerald-400";
+      return "bg-emerald-500";
     } else if(percentMatch >= 80.00) {
-      return "bg-lime-400"
+      return "bg-lime-500"
     } else if(percentMatch >= 70.00) {
-      return "bg-yellow-400"
+      return "bg-yellow-500"
     } else if(percentMatch >= 60.00) {
-      return "bg-amber-400"
+      return "bg-amber-500"
     } else if(percentMatch >= 50.00) {
-      return "bg-orange-400"
+      return "bg-orange-500"
     } 
     
-    return "bg-red-500"
+    return "bg-red-400"
 
 
   }
