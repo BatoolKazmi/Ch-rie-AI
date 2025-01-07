@@ -20,6 +20,7 @@ interface Product {
 
 function Products() {
     const [products, setProducts] =  useState<Product[]>([])
+    const [sortVal, setSortVal] = useState<string>("desc_match")
 
     useEffect(() => {
         setProducts([{
@@ -150,6 +151,25 @@ function Products() {
         }])
     }, [])
 
+
+    // If sort val changes, change the returned sorted array values
+    useEffect(() => {
+        setProducts((products) => {
+            let sortedProducts;
+            if (sortVal === "asc_price") {
+                sortedProducts = [...products].sort((a, b) => a.salesprice - b.salesprice); 
+            } else if (sortVal === "desc_price") {
+                sortedProducts = [...products].sort((a, b) => b.salesprice - a.salesprice);
+            } else if (sortVal === "desc_match") {
+                sortedProducts = [...products].sort((a, b) => a.color_distance - b.color_distance);
+            } else {
+                sortedProducts = [...products].sort((a, b) => b.color_distance - a.color_distance);
+            }
+
+            return sortedProducts
+        })
+    }, [sortVal])
+
     return ( 
     <>
       <section className="bg-slate-50/45 mx-8 my-3 rounded-xl">
@@ -164,7 +184,7 @@ function Products() {
             <h2 className="text-4xl sm:text-6xl text-center px-6">Say Hello to Makeup Made For You</h2>
             <div className="sort-results pt-[3rem] flex flex-col items-center sm:flex-row sm:justify-around">
                 <div className="sort-by pb-4 sm: pb-0">
-                    <Dropdown />
+                    <Dropdown setSortVal={setSortVal}/>
                 </div>
                 <div className="results-title">
                     <h4>6 PRODUCT MATCHES</h4>
