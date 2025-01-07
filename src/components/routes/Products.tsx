@@ -175,7 +175,7 @@ function Products() {
       <section className="bg-slate-50/45 mx-8 my-3 rounded-xl">
         <div className="products-bar px-2 pt-[4rem] pb-2">
             <ul className="flex flex-col sm:flex-row justify-center items-center">
-                <li className="px-4 text-lg"><button className="border-b-2 border-gray-500">FOUNDATIONS</button></li>
+                <li className="px-4 text-lg"><button className="border-b-2 p-2 border-white">FOUNDATIONS</button></li>
                 <li className="px-4 text-lg pt-4 sm:pt-0 text-gray-800"><button>COMING SOON</button></li>
                 <li className="px-4 text-lg pt-4 sm:pt-0 text-gray-800"><button>COMING SOON</button></li>
             </ul>
