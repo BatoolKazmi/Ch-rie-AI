@@ -6,7 +6,8 @@ import { Theme } from "@chakra-ui/react"
 
 export default function Layout() {
   return (
-    <ColorModeProvider forcedTheme="light">
+    <>
+      <ColorModeProvider forcedTheme="light">
       <Theme appearance="light">
         <NavBar />
         <main>
@@ -14,7 +15,7 @@ export default function Layout() {
         </main>
         <Footer />
       </Theme>
-    </ColorModeProvider>
-
+      </ColorModeProvider>
+    </>
   );
 }

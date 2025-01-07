@@ -9,7 +9,7 @@ import {
 import { useState } from "react"
 import { HiSortAscending } from "react-icons/hi"
 import { Theme } from "@chakra-ui/react"
-import { useEffect, MouseEventHandler } from "react"
+import { useEffect } from "react"
 
 interface DropdownProps {
   setSortVal: (value: string) => void; 
@@ -24,15 +24,6 @@ const Dropdown: React.FC<DropdownProps> = ({setSortVal}) => {
   useEffect(() => {
     setSortVal(value);
   }, [value])
-
-  // Function to change value when clicked
-
-
-  /* 
-  <MenuRadioItemGroup
-                  value={value}
-                  onValueChange={(e) => setValue(e.value)}
-                >*/
 
   return (
         <MenuRoot>

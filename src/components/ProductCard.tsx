@@ -3,12 +3,9 @@ import {
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-  DialogActionTrigger
+  DialogTrigger
 } from "@/components/ui/dialog"
 
 import { Theme } from "@chakra-ui/react"
@@ -34,11 +31,6 @@ import { Rating } from "@/components/ui/rating"
     let match_percent = match_val * 100;
     return match_percent.toFixed(2);
   }
-
-  const openModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); 
-    console.log("clicked"); 
-  };
 
   const setMatchColor = (color_distance: number) => {
     let percentMatch = parseFloat(findPercentMatch(color_distance));
