@@ -10,7 +10,7 @@ export default function Layout() {
       <ColorModeProvider forcedTheme="light">
       <Theme appearance="light">
         <NavBar />
-        <main>
+        <main className="pb-12">
           <Outlet />
         </main>
         <Footer />

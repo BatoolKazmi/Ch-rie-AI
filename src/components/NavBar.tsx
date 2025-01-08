@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/LogoWhite.svg";
 import { Button } from "@/components/ui/button";
 import Logo_png from "../assets/cherie_logo.png";
 import {
@@ -19,7 +18,7 @@ function NavBar() {
     <div className="navbar flex flex-row justify-between items-center px-[5%] h-[5rem] bg-white sticky top-0 z-50 py-2 border-b-[1px] border-solid border-black" >
       <div className="logo-div">
         <NavLink to="/">
-          <img src={Logo_png} alt="logo" className=" max-h-[5rem] sm:max-w-[8rem] sm:max-h-[6.5rem]" />
+          <img src={Logo_png} alt="logo" className=" max-h-[5rem] sm:max-w-[8rem] sm:max-h-[6.5rem] py-2" />
         </NavLink>
       </div>
       <div className="headings nav-heading bg-black">
