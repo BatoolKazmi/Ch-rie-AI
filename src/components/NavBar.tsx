@@ -16,7 +16,7 @@ import { Theme } from "@chakra-ui/react"
 
 function NavBar() {
   return (
-    <nav className="navbar flex flex-row justify-between items-center px-[5%] h-[5rem] bg-white sticky top-0 z-50 py-2" >
+    <div className="navbar flex flex-row justify-between items-center px-[5%] h-[5rem] bg-white sticky top-0 z-50 py-2 border-b-[1px] border-solid border-black" >
       <div className="logo-div">
         <NavLink to="/">
           <img src={Logo_png} alt="logo" className=" max-h-[5rem] sm:max-w-[8rem] sm:max-h-[6.5rem]" />
@@ -45,7 +45,7 @@ function NavBar() {
           </MenuRoot>
         </div>
       </div>
-    </nav>
+    </div>
   );
 }
 
