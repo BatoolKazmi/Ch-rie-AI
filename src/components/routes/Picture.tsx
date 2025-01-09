@@ -13,7 +13,7 @@ function Picture() {
   return (
     <>
       <NavBar />
-      <div className="main">
+      <div className="main flex flex-col items-center justify-center ">
         <h1 className="text-3xl font-bold underline">Your Picture</h1>
         <img
           src={imageUrl}
