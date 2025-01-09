@@ -13,7 +13,13 @@ function Picture() {
     <div>
       <NavBar />
       <h1>Your Picture</h1>
-      <img src={imageUrl} alt="Captured" />
+      <img
+        src={imageUrl}
+        alt="Captured"
+        style={{
+          transform: "scaleX(-1)",
+        }}
+      />
     </div>
   );
 }

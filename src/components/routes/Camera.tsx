@@ -1,6 +1,7 @@
 import * as faceapi from "face-api.js";
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // Types for landmarks
 interface Landmark {
@@ -19,6 +20,8 @@ interface Regions {
 function Camera() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const location = useLocation();
+  const skinType = location.state;
 
   const [loadingModels, setLoadingModels] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -38,14 +41,27 @@ function Camera() {
 
   const startVideo = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (videoRef.current) {
+      if (videoRef.current && !videoRef.current.srcObject) {
+        // Get user media only if srcObject is not already set
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
+
+        // Set the stream to the video element
         videoRef.current.srcObject = stream;
-        videoRef.current.play();
+
+        // Wait for the video to load and play
+        await new Promise<void>((resolve, reject) => {
+          videoRef.current!.oncanplay = () => {
+            videoRef.current?.play().then(resolve).catch(reject); // Wait for play to resolve
+          };
+        });
+
+        // Load models and detect faces
         await loadModels();
         detectFaces();
       }
-    } catch {
+    } catch (error) {
       setErrorMessage(
         "Unable to access webcam. Please check your device permissions."
       );
@@ -328,34 +344,30 @@ function Camera() {
       console.log("Left Cheek Color:", leftCheekColor);
       console.log("Right Cheek Color:", rightCheekColor);
 
+      // Calculate the average RGB values for cheeks and under eyes
+      const cheekColor = [
+        Math.round((leftCheekColor.r + rightCheekColor.r) / 2),
+        Math.round((leftCheekColor.g + rightCheekColor.g) / 2),
+        Math.round((leftCheekColor.b + rightCheekColor.b) / 2),
+      ];
+
+      const undereyeColor = [
+        Math.round((leftUndereyeColor.r + rightUndereyeColor.r) / 2),
+        Math.round((leftUndereyeColor.g + rightUndereyeColor.g) / 2),
+        Math.round((leftUndereyeColor.b + rightUndereyeColor.b) / 2),
+      ];
+
       // Log the RGB values as a JSON object in [r, g, b] format
       const jsonOutput = JSON.stringify(
         {
+          skintype: skinType,
+          cheekcolor: cheekColor,
           foreheadcolor: [
             middleForeheadColor.r,
             middleForeheadColor.g,
             middleForeheadColor.b,
           ],
-          leftCheekColor: [
-            leftCheekColor.r,
-            leftCheekColor.g,
-            leftCheekColor.b,
-          ],
-          rightCheekColor: [
-            rightCheekColor.r,
-            rightCheekColor.g,
-            rightCheekColor.b,
-          ],
-          leftundereyecolor: [
-            leftUndereyeColor.r,
-            leftUndereyeColor.g,
-            leftUndereyeColor.b,
-          ],
-          rightundereyecolor: [
-            rightUndereyeColor.r,
-            rightUndereyeColor.g,
-            rightUndereyeColor.b,
-          ],
+          undereyecolor: undereyeColor,
         },
         null,
         2

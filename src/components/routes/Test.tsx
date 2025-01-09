@@ -24,7 +24,9 @@ function Test() {
       alert("Please select a skin type before proceeding.");
       return;
     }
-    navigate("/camera");
+
+    // Pass the skinType to the camera page
+    navigate("/camera", { state: { skinType } });
   };
 
   return (
@@ -81,7 +83,7 @@ function Test() {
                 type="radio"
                 id="normal"
                 name="skinType"
-                value="Normal"
+                value="normal"
                 onChange={(e) => setSkinType(e.target.value)}
               />
               <label htmlFor="normal" className="ml-2">
