@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../NavBar"; // Ensure this path is correct
 
 function Test() {
   const [phase, setPhase] = useState(1);
