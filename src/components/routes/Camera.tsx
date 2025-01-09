@@ -2,6 +2,8 @@ import * as faceapi from "face-api.js";
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import "../../styles/App.css";
+import NavBar from "../NavBar";
 
 // Types for landmarks
 interface Landmark {
@@ -174,7 +176,7 @@ function Camera() {
           faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
 
           // Handle face detection errors
-          if (resizedDetections.length === 0) {
+          if (resizedDetections.length < 1) {
             setErrorMessage(
               "No face detected. Please position yourself in front of the camera."
             );
@@ -508,32 +510,78 @@ function Camera() {
   };
 
   return (
-    <div className="myapp" style={{ position: "relative" }}>
-      <h1>Face Detection</h1>
-      {loadingModels && <h2>Loading models, please wait...</h2>}
-      {errorMessage && <h2 style={{ color: "red" }}>{errorMessage}</h2>}
-      {!loadingModels && !errorMessage && countdown !== null && (
-        <h2>Taking picture in {countdown}...</h2>
-      )}
-      <div className="appvide" style={{ position: "relative" }}>
-        <video
-          crossOrigin="anonymous"
-          ref={videoRef}
-          autoPlay
-          style={{ position: "absolute", zIndex: 1, transform: "scaleX(-1)" }}
-        />
-        <canvas
-          ref={canvasRef}
+    <>
+      <NavBar />
+      <div
+        className="myapp main"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          position: "relative",
+        }}
+      >
+        {/* Text container on top of the video */}
+        <div
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 2,
-            transform: "scaleX(-1)",
+            zIndex: 3,
+            textAlign: "center",
+            color: "white",
+            width: "100%",
           }}
-        />
+        >
+          <h1>Face Detection</h1>
+          {loadingModels && <h2>Loading models, please wait...</h2>}
+          {errorMessage && <h2 style={{ color: "red" }}>{errorMessage}</h2>}
+          {!loadingModels && !errorMessage && countdown !== null && (
+            <h2>Taking picture in {countdown}...</h2>
+          )}
+        </div>
+
+        {/* Video and Canvas container */}
+        <div
+          className="appvide"
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            maxWidth: "37.5em",
+            maxHeight: "50em",
+          }}
+        >
+          <video
+            crossOrigin="anonymous"
+            ref={videoRef}
+            autoPlay
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              zIndex: 1,
+              transform: "scaleX(-1)",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              zIndex: 2,
+              transform: "scaleX(-1)",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

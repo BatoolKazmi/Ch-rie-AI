@@ -1,5 +1,6 @@
 import NavBar from "../NavBar";
 import { useLocation } from "react-router-dom";
+import "../../styles/App.css";
 
 function Picture() {
   const location = useLocation();
@@ -10,17 +11,19 @@ function Picture() {
   }
 
   return (
-    <div>
+    <>
       <NavBar />
-      <h1>Your Picture</h1>
-      <img
-        src={imageUrl}
-        alt="Captured"
-        style={{
-          transform: "scaleX(-1)",
-        }}
-      />
-    </div>
+      <div className="main">
+        <h1 className="text-3xl font-bold underline">Your Picture</h1>
+        <img
+          src={imageUrl}
+          alt="Captured"
+          style={{
+            transform: "scaleX(-1)",
+          }}
+        />
+      </div>
+    </>
   );
 }
 
