@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as faceapi from "face-api.js";
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,8 @@ interface Regions {
   leftCheek: Landmark;
   rightCheek: Landmark;
 }
+=======
+>>>>>>> f594de2b4bb398bdd6686098676f9c7688b3c2ab
 
 function Camera() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -508,6 +511,7 @@ function Camera() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="myapp" style={{ position: "relative" }}>
       <h1>Face Detection</h1>
       {loadingModels && <h2>Loading models, please wait...</h2>}
@@ -534,6 +538,11 @@ function Camera() {
         />
       </div>
     </div>
+=======
+    <>
+      <h1 className="text-3xl font-bold underline">Camera Page</h1>
+    </>
+>>>>>>> f594de2b4bb398bdd6686098676f9c7688b3c2ab
   );
 }
 
