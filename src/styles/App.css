@@ -1,7 +1,7 @@
 @import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
 
 main, .main {
-    padding-top: 2rem;
     min-height: 100vh;
     width: 100%;
     font-family: 'Arial', sans-serif;
@@ -17,4 +17,12 @@ main, .main {
 
 .orig-bg-color {
     background-color: rgba(255,181,194,1);
+}
+
+p {
+    font-family: Helvetica, sans-serif
+}
+
+h1, h2, h3, h4 {
+    font-family: "Gloock", serif;
 }
