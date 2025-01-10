@@ -5,6 +5,10 @@ import { FaDiagramProject } from "react-icons/fa6";
 import { MdInsights } from "react-icons/md";
 import SubscriptionForm from "../SubscriptionForm";
 import { motion } from "framer-motion";
+import fiona_img from "../../assets/fiona_img.png";
+import batool_img from "../../assets/batool_img.png";
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithubSquare } from "react-icons/fa";
 
 function Home() {
 
@@ -41,6 +45,39 @@ function Home() {
           <p className="text-lg pb-4">At Chérie AI, we’re revolutionizing the beauty shopping experience. Our mission is to make finding the perfect makeup easy, personal, and accessible. Using our ML-powered recommendation system and  skin analysis technology, we match you with products tailored to your unique skin tone, type, and budget.</p>
            <p className="text-lg pb-10">
         Whether you’re a beauty enthusiast or just starting your journey, Chérie helps you discover new favorites from Canada’s top online beauty stores. Say goodbye to guesswork and hello to makeup made for you.</p>
+        </div>
+      </div>
+      <div className="team-section bg-white flex flex-col items-center pt-[5rem] pb-[5rem]">
+        <h3 className="text-6xl font-semibold pb-8 text-center px-4">Meet the Team</h3>
+        <div className="team-card-section flex flex-col pt-8 sm:flex-row">
+          <div className="member-card  max-w-[30rem]  flex flex-col justify-center items-center py-2">
+            <img src={fiona_img} alt="Picture of Fiona Laygo" style={{
+              height: '70%',
+              width: '40%'
+            }} className="rounded-full"/>
+            <div className="details py-4 flex flex-col items-center">
+              <h5>Co-Founder</h5>
+              <h3 className="text-2xl">Fiona Laygo</h3>
+              <div className="flex flex-row justify-start text-3xl pt-2">
+                <button><a href="https://www.linkedin.com/in/fionalaygo4015/" target="_blank"><FaLinkedin /></a></button>
+                <button><a href="https://github.com/laygofiona" target="_blank"><FaGithubSquare /></a></button>
+              </div>
+            </div>
+          </div>
+          <div className="member-card  max-w-[30rem] flex flex-col justify-center items-center py-2">
+            <img src={batool_img} alt="Picture of Batool Kazmi" style={{
+              height: '70%',
+              width: '40%'
+            }} className="rounded-full"/>
+            <div className="details py-4 flex flex-col items-center">
+              <h5>Co-Founder</h5>
+              <h3 className="text-2xl">Batool Kazmi</h3>
+              <div className="flex flex-row justify-start text-3xl pt-2">
+                <button><a href="https://www.linkedin.com/in/batoolkazmi/" target="_blank"><FaLinkedin /></a></button>
+                <button><a href="https://github.com/BatoolKazmi" target="_blank"><FaGithubSquare /></a></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="features-section bg-black min-h-[50vh] text-white flex flex-col sm:flex-row justify-evenly items-center">
