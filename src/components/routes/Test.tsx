@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/App.css";
 import { Radio, RadioGroup } from "@/components/ui/radio"
+import { motion } from "framer-motion";
 
 
 function Test() {
@@ -36,7 +37,11 @@ function Test() {
         <div className="p-6 w-full max-w-lgn flex justify-start items-center">
           {phase === 1 && (
             <div className="flex flex-col justify-start  items-start mb-[20rem] ml-0 sm:ml-10">
-              <h1 className="text-3xl sm:text-6xl font-bold mb-4">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: "easeOut" }}>
+                  <h1 className="text-3xl sm:text-6xl font-bold mb-4">
                 Which undertone do you have?
               </h1>
               <form>
@@ -54,11 +59,16 @@ function Test() {
                   </button>
                 </div>
               </form>
+              </motion.div>
             </div>
           )}
           {phase === 2 && (
             <div className="flex flex-col justify-start  items-start mb-[10rem] ml-0 sm:ml-10">
-              <h1 className="text-3xl sm:text-6xl font-bold mb-4">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: "easeOut" }}>
+                  <h1 className="text-3xl sm:text-6xl font-bold mb-4">
                 What is your skin type?
               </h1>
               <form>
@@ -86,6 +96,7 @@ function Test() {
                   </button>
                 </div>
               </form>
+              </motion.div>
             </div>
           )}
         </div>

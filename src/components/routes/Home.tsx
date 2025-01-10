@@ -4,18 +4,26 @@ import { FaMicrochip } from "react-icons/fa6";
 import { FaDiagramProject } from "react-icons/fa6";
 import { MdInsights } from "react-icons/md";
 import SubscriptionForm from "../SubscriptionForm";
+import { motion } from "framer-motion";
 
 function Home() {
 
   return (
     <div className="">
       <div className="h-[100vh] flex flex-col items-center justify-center bg-circle">
-        <div className="slogan text-6xl lg:text-[4.5rem] xl:text-8xl font-semibold sm:max-w-[50vw] px-4 leading-[4rem] pb-12 text-center">
+      <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: "easeOut" }}
+                style={{justifyContent: "Center", alignItems: "center", display: "flex", flexDirection: "column"}}
+      >
+          <div className="slogan text-6xl lg:text-[4.5rem] xl:text-8xl font-semibold sm:max-w-[50vw] px-4 leading-[4rem] pb-12 text-center">
           <h2>New Makeup, </h2>
           <h2>New You - </h2>
           <h2>Every time with Chérie AI</h2>
         </div>
         <Button size="xl" variant="solid" className="bg-white  px-6 py-8 font-semibold text-2xl border-0"><NavLink to="/test">Find Products</NavLink></Button>
+      </motion.div>
       </div>
       <div className="welcome-section bg-black sm:h-[40vh] text-white flex flex-col justify-center sm:flex-row p-6 ">
           <div className=" h-[50%] pt-4 sm:h-[100%] text-center flex flex-col items-center justify-center text-4xl sm:text-6xl font-semibold px-2 ">

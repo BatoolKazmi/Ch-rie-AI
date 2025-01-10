@@ -4,6 +4,8 @@ import Dropdown from "../Dropdown";
 import { useLocation } from "react-router-dom";
 import { GridLoader } from "react-spinners";
 import { TbFaceIdError } from "react-icons/tb";
+import { motion } from "framer-motion";
+
 
 
 
@@ -93,19 +95,38 @@ function Products() {
       <section className="bg-slate-50/45 mx-8 min-h-[100vh]">
       {loading ? 
         <div className="flex flex-col items-center justify-center min-h-[100vh]">
-            <GridLoader color="#6a6a6a" size={30} />
-            <h2 className="text-4xl pt-5">Loading...</h2>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: "easeOut" }}
+                style={{justifyContent: "Center", alignItems: "center", display: "flex", flexDirection: "column"}}
+            >
+                <GridLoader color="#6a6a6a" size={30} />
+                <h2 className="text-4xl pt-5">Loading...</h2>
+            </motion.div>
         </div>
        : error ? (
         <div className="error-display min-h-[100vh] text-center pt-10  flex flex-col justify-center items-center">
-            <TbFaceIdError className="text-[8rem] pb-4" />
-            <h2 className="text-4xl pb-4 px-4 ">Oops! Something went wrong.</h2>
-            <h2 className="text-4xl pb-4 px-4"> Please Try Again Later.</h2>
-            <p className="mb-10 px-4">{error}</p>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: "easeOut" }}
+                style={{justifyContent: "Center", alignItems: "center", display: "flex", flexDirection: "column"}}
+            >
+                <TbFaceIdError className="text-[8rem] pb-4" />
+                <h2 className="text-4xl pb-4 px-4 ">Oops! Something went wrong.</h2>
+                <h2 className="text-4xl pb-4 px-4"> Please Try Again Later.</h2>
+                <p className="mb-10 px-4">{error}</p>
+            </motion.div>
         </div>
         ) : (
         <>
-        <div className="products-bar px-2 pt-[4rem] pb-2">
+        <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: "easeOut" }}
+        >
+            <div className="products-bar px-2 pt-[4rem] pb-2">
             <ul className="flex flex-col sm:flex-row justify-center items-center">
                 <li className="px-4 text-lg"><button className="border-b-2 p-2 border-white">FOUNDATIONS</button></li>
                 <li className="px-4 text-lg pt-4 sm:pt-0 text-gray-800"><button>COMING SOON</button></li>
@@ -128,6 +149,8 @@ function Products() {
                 return <ProductCard key={product.color_distance} product={product}></ProductCard>
             })}
         </div>
+
+        </motion.div>
         </>
       )}
       </section>
