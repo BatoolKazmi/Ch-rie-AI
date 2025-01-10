@@ -8,22 +8,6 @@ import Test from "./Test";
 
 const routes = [
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/test",
-    element: <Test />,
-  },
-  {
-    path: "/camera",
-    element: <Camera />,
-  },
-  {
-    path: "/picture",
-    element: <Picture />,
-  },
-  {
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -47,6 +31,10 @@ const routes = [
         element: <Products />,
         errorElement: <ErrorPage />,
       },
+      {
+        path: "/picture",
+        element: <Picture />,
+      }
     ],
   },
 ];
