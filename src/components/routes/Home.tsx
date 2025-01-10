@@ -22,7 +22,7 @@ function Home() {
           <h2>New You - </h2>
           <h2>Every time with Chérie AI</h2>
         </div>
-        <Button size="xl" variant="solid" className="bg-white  px-6 py-8 font-semibold text-2xl border-0"><NavLink to="/test">Find Products</NavLink></Button>
+        <Button size="xl" variant="solid" className="bg-white  px-6 py-8 font-semibold text-xl border-0 rounded-lg hover:bg-black hover:text-white"><NavLink to="/test">Find Products</NavLink></Button>
       </motion.div>
       </div>
       <div className="welcome-section bg-black sm:h-[40vh] text-white flex flex-col justify-center sm:flex-row p-6 ">

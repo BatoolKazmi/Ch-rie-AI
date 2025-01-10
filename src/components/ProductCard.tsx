@@ -92,7 +92,7 @@ import { Rating } from "@/components/ui/rating"
       <Card.Footer className="px-4 bg-slate-200">
       <DialogRoot size="lg" placement="center" motionPreset="slide-in-bottom">
       <DialogTrigger asChild>
-        <Button variant="outline" size="lg" className="font-semibold w-[100%]">Learn More</Button>
+        <Button variant="outline" size="lg" className="font-semibold w-[100%]"><h3>Learn More</h3></Button>
       </DialogTrigger>
       <DialogContent>
       <Theme appearance="light">
@@ -123,7 +123,7 @@ import { Rating } from "@/components/ui/rating"
               <h5 className="pt-4"><span className="font-thin text-gray-800">Shade match: </span><span className="font-semibold">{product.shadename}</span></h5>
               <h5 className="pt-4"><span className="font-thin text-gray-800">Best for: </span><span className="font-semibold">{capitalizedSkinTypes(product.skintypes).join(", ")} skin types</span></h5>
               <h4 className="pt-4 pb-8"><span className="font-thin text-gray-800">Sales price: </span><span className="font-semibold text-xl">{`$${product.salesprice}`}</span></h4>
-              <Button size="md" variant="surface" className="px-2 bg-gray-200"><a href={product.targeturl} target="_blank">Buy Now</a></Button>
+              <Button size="md" variant="surface" className="px-2 bg-gray-200 hover:bg-black hover:text-white"><a href={product.targeturl} target="_blank"><h3>Buy Now</h3></a></Button>
             </div>
           </div>
         </DialogBody>

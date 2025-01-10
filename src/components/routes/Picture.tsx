@@ -50,7 +50,7 @@ function Picture() {
           }}
           className="rounded-lg"
         />
-        <Button variant="solid" className="mt-5 rounded bg-white px-4 py-6 font-semibold" onClick={() => goToProductsPage(skinData)}><h2>Find My Products</h2></Button>
+        <Button variant="solid" className="mt-5 rounded bg-white px-4 py-6 font-semibold hover:bg-black hover:text-white" onClick={() => goToProductsPage(skinData)}><h2>Find My Products</h2></Button>
 
         </motion.div>
       </div>
