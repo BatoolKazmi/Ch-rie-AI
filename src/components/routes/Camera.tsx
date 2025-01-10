@@ -37,9 +37,28 @@ function Camera() {
   useEffect(() => {
     startVideo();
     return () => {
+      turnOffCamera(); // Clean up camera when component unmounts
       if (countdownInterval.current) clearInterval(countdownInterval.current);
     };
   }, []);
+
+  // Function to turn off the camera
+  const turnOffCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      // Get all tracks from the stream
+      const stream = videoRef.current.srcObject as MediaStream;
+      const tracks = stream.getTracks();
+    
+      // Stop each track
+      tracks.forEach(track => track.stop());
+    
+      // Clear the srcObject
+      videoRef.current.srcObject = null;
+    }
+  };
+
+
+
 
   const startVideo = async () => {
     try {
@@ -340,11 +359,11 @@ function Camera() {
         scaledRegions.rightCheek.y
       );
 
-      console.log("Middle Forehead Color:", middleForeheadColor);
+      /*console.log("Middle Forehead Color:", middleForeheadColor);
       console.log("Left Undereye Color:", leftUndereyeColor);
       console.log("Right Undereye Color:", rightUndereyeColor);
       console.log("Left Cheek Color:", leftCheekColor);
-      console.log("Right Cheek Color:", rightCheekColor);
+      console.log("Right Cheek Color:", rightCheekColor);*/
 
       // Calculate the average RGB values for cheeks and under eyes
       const cheekColor = [
@@ -360,7 +379,7 @@ function Camera() {
       ];
 
       // Log the RGB values as a JSON object in [r, g, b] format
-      const jsonOutput = JSON.stringify(
+      /*const jsonOutput = JSON.stringify(
         {
           skintype: skinType,
           cheekcolor: cheekColor,
@@ -373,9 +392,17 @@ function Camera() {
         },
         null,
         2
-      );
-
-      console.log(jsonOutput);
+      );*/
+      const jsonOutput = {
+        skintype: skinType,
+        cheekcolor: cheekColor,
+        foreheadcolor: [
+          middleForeheadColor.r,
+          middleForeheadColor.g,
+          middleForeheadColor.b,
+        ],
+        undereyecolor: undereyeColor,
+      }
 
       if (context) {
         // Draw circles for the new regions
@@ -417,7 +444,10 @@ function Camera() {
       // Reset photo taken status
       setPhotoTaken(true);
 
-      navigate("/picture", { state: { imageUrl } });
+      // Turn off camera
+      turnOffCamera();
+
+      navigate("/picture", { state: { imageUrl, skinData: jsonOutput } });
     }
   };
 
@@ -513,7 +543,7 @@ function Camera() {
     <>
       <NavBar />
       <div
-        className="myapp main"
+        className="myapp  main"
         style={{
           display: "flex",
           justifyContent: "center",

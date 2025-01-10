@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import ProductCard from "../ProductCard";
 import Dropdown from "../Dropdown";
+import { useLocation } from "react-router-dom";
+import { GridLoader } from "react-spinners";
+import { TbFaceIdError } from "react-icons/tb";
 
 
 
@@ -21,136 +24,51 @@ interface Product {
 function Products() {
     const [products, setProducts] =  useState<Product[]>([])
     const [sortVal, setSortVal] = useState<string>("desc_match")
+    const location = useLocation();
+    const skinData = location.state?.skinData;
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        setProducts([{
-            "id": 8,
-            "productid": "P308201",
-            "productname": "Lancôme - Teint Idole Ultra 24H Long Wear Matte Foundation with Hyaluronic Acid & Vitamin E",
-            "image": "https://www.sephora.com/productimages/sku/s2744597-main-zoom.jpg?imwidth=270",
-            "targeturl": "https://www.sephora.com/product/teint-idole-ultra-24h-long-wear-foundation-P308201?skuId=2744597",
-            "rgbvalue": [
-                199,
-                155,
-                121
-            ],
-            "shadename": "240W For light to medium skin with warm/yellow undertones",
-            "rating": 4.5077,
-            "salesprice": 77.0,
-            "skintypes": [
-                "normal",
-                "oily",
-                "combination"
-            ],
-            "color_distance": 5.196152422706632
-        },
-        {
-            "id": 9,
-            "productid": "P310726",
-            "productname": "CLINIQUE - Stay-Matte Oil-Free Makeup Foundation",
-            "image": "https://www.sephora.com/productimages/sku/s1411172-main-zoom.jpg?imwidth=270",
-            "targeturl": "https://www.sephora.com/product/stay-matte-oil-free-makeup-P310726?skuId=1411172",
-            "rgbvalue": [
-                196,
-                149,
-                124
-            ],
-            "shadename": "21 Cream Caramel",
-            "rating": 4.0523,
-            "salesprice": 53.0,
-            "skintypes": [
-                "normal",
-                "dry",
-                "sensitive"
-            ],
-            "color_distance": 441
-        },
-        {
-            "id": 8,
-            "productid": "P308201",
-            "productname": "Lancôme - Teint Idole Ultra 24H Long Wear Matte Foundation with Hyaluronic Acid & Vitamin E",
-            "image": "https://www.sephora.com/productimages/sku/s2744597-main-zoom.jpg?imwidth=270",
-            "targeturl": "https://www.sephora.com/product/teint-idole-ultra-24h-long-wear-foundation-P308201?skuId=2744597",
-            "rgbvalue": [
-                202,
-                153,
-                115
-            ],
-            "shadename": "230W for light to medium olive skin with warm/peachy undertones",
-            "rating": 4.5077,
-            "salesprice": 77.0,
-            "skintypes": [
-                "normal",
-                "oily",
-                "combination"
-            ],
-            "color_distance": 200
-        },
-        {
-            "id": 8,
-            "productid": "P308201",
-            "productname": "Lancôme - Teint Idole Ultra 24H Long Wear Matte Foundation with Hyaluronic Acid & Vitamin E",
-            "image": "https://www.sephora.com/productimages/sku/s2744597-main-zoom.jpg?imwidth=270",
-            "targeturl": "https://www.sephora.com/product/teint-idole-ultra-24h-long-wear-foundation-P308201?skuId=2744597",
-            "rgbvalue": [
-                193,
-                150,
-                117
-            ],
-            "shadename": "250W For light to medium skin with warm/peachy undertones",
-            "rating": 4.7,
-            "salesprice": 77.0,
-            "skintypes": [
-                "normal",
-                "oily",
-                "combination"
-            ],
-            "color_distance": 100
-        },
-        {
-            "id": 4,
-            "productid": "P234967",
-            "productname": "CLINIQUE - Even Better™ Makeup Broad Spectrum SPF 15 Foundation",
-            "image": "https://www.sephora.com/productimages/sku/s2083905-main-zoom.jpg?imwidth=270",
-            "targeturl": "https://www.sephora.com/product/even-better-makeup-spf-15-P234967?skuId=2083905",
-            "rgbvalue": [
-                193,
-                146,
-                118
-            ],
-            "shadename": "Stay Spice",
-            "rating": 4.5,
-            "salesprice": 53.0,
-            "skintypes": [
-                "sensitive",
-                "dry",
-                "normal"
-            ],
-            "color_distance": 50
-        },
-        {
-            "id": 7,
-            "productid": "P297404",
-            "productname": "DIOR - Forever Natural Velvet Matte Compact Foundation",
-            "image": "https://www.sephora.com/productimages/sku/s2595072-main-zoom.jpg?imwidth=270",
-            "targeturl": "https://www.sephora.com/product/diorskin-forever-perfect-matte-powder-foundation-P297404?skuId=2595072",
-            "rgbvalue": [
-                206,
-                155,
-                124
-            ],
-            "shadename": "5N medium",
-            "rating": 4.55,
-            "salesprice": 81.0,
-            "skintypes": [
-                "normal",
-                "combination",
-                "sensitive"
-            ],
-            "color_distance": 8.774964387392123
-        }])
-    }, [])
+    const handlePostRequest = async () => {
+        setLoading(true);
+        setError(null);
+    
+        const requestBody = {
+            skintype: skinData["skintype"]["skinType"],
+            cheekcolor: skinData["cheekcolor"],
+            foreheadcolor: skinData["foreheadcolor"],
+            undereyecolor: skinData["undereyecolor"]
+        }
 
+        try {
+          const response = await fetch("https://yrzb5zqe13.execute-api.us-east-1.amazonaws.com/recommend", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          });
+    
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+          }
+    
+          const responseData = await response.json();
+          setProducts(responseData.foundations);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+              } else {
+                setError("An unexpected error occurred");
+              }
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        handlePostRequest();
+      }, [])
 
     // If sort val changes, change the returned sorted array values
     useEffect(() => {
@@ -172,7 +90,21 @@ function Products() {
 
     return ( 
     <>
-      <section className="bg-slate-50/45 mx-8   ">
+      <section className="bg-slate-50/45 mx-8 min-h-[100vh]">
+      {loading ? 
+        <div className="flex flex-col items-center justify-center min-h-[100vh]">
+            <GridLoader color="#6a6a6a" size={30} />
+            <h2 className="text-4xl pt-5">Loading...</h2>
+        </div>
+       : error ? (
+        <div className="error-display min-h-[100vh] text-center pt-10  flex flex-col justify-center items-center">
+            <TbFaceIdError className="text-[8rem] pb-4" />
+            <h2 className="text-4xl pb-4 px-4 ">Oops! Something went wrong.</h2>
+            <h2 className="text-4xl pb-4 px-4"> Please Try Again Later.</h2>
+            <p className="mb-10 px-4">{error}</p>
+        </div>
+        ) : (
+        <>
         <div className="products-bar px-2 pt-[4rem] pb-2">
             <ul className="flex flex-col sm:flex-row justify-center items-center">
                 <li className="px-4 text-lg"><button className="border-b-2 p-2 border-white">FOUNDATIONS</button></li>
@@ -196,6 +128,8 @@ function Products() {
                 return <ProductCard key={product.color_distance} product={product}></ProductCard>
             })}
         </div>
+        </>
+      )}
       </section>
     </> );
 }

@@ -8,6 +8,11 @@ import Test from "./Test";
 
 const routes = [
   {
+    path: "/camera",
+    element: <Camera />,
+    errorElement: <ErrorPage />,
+  },
+  {
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -22,11 +27,6 @@ const routes = [
         errorElement: <ErrorPage />,
       },
       {
-        path: "/camera",
-        element: <Camera />,
-        errorElement: <ErrorPage />,
-      },
-      {
         path: "/products",
         element: <Products />,
         errorElement: <ErrorPage />,
@@ -34,6 +34,10 @@ const routes = [
       {
         path: "/picture",
         element: <Picture />,
+      },
+      {
+        path: "/error",
+        element: <ErrorPage />
       }
     ],
   },
